@@ -1,5 +1,7 @@
 import gym
 import argparse
+import time
+
 ## random agent
 class RandomAgent(object):
     def __init__(self, action_space):
@@ -37,12 +39,14 @@ if __name__ == '__main__':
     done = False
 
     for i_episode in range(num_episodes):
-        observation = env.reset()
+        observation = env.reset() # 重置函数
         for t in range(num_maxstep):
-            env.render()
+            # time.sleep(0.2)
+            env.render() # 展示函数
             action = agent.act(observation, reward, done)
-            observation, reward, done, info = env.step(action)
+            observation, reward, done, info = env.step(action) # 物理引擎
             print('episode {}-step {}, taking action {}, observation {}'.format(i_episode, t, action, observation))
+            # print('episode {}-step {}, taking action {}, reward {}'.format(i_episode, t, action, reward))
         #if done and False:
         #    print("Episode finished after {} timesteps".format(t+1))
         #    break
